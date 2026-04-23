@@ -441,6 +441,177 @@
     .source-text a { color: var(--accent); text-decoration: none; }
     .source-text a:hover { text-decoration: underline; }
 
+    /* ---- MONIKA SECTION ---- */
+    .monika-section {
+      background: linear-gradient(135deg, #0f0f1a 0%, #13101f 100%);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .monika-header {
+      background: linear-gradient(90deg, rgba(108,99,255,0.15), rgba(0,212,170,0.08));
+      border-bottom: 1px solid rgba(108,99,255,0.2);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .monika-avatar {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, #ff6b9d, #c44dff);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .monika-header-text h2 {
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 3px;
+    }
+    .monika-header-text p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .monika-body { padding: 28px; }
+    .monika-body > p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+    .monika-body > p strong { color: var(--text); }
+
+    /* Steps */
+    .step-list { display: flex; flex-direction: column; gap: 16px; margin: 24px 0; }
+    .step-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .step-num {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--accent), #9b8fff);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 800;
+      flex-shrink: 0; color: #fff;
+      margin-top: 2px;
+    }
+    .step-content { flex: 1; }
+    .step-content h4 {
+      font-size: 15px; font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+    .step-content p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin: 0;
+    }
+    .step-content .tool-tag {
+      display: inline-block;
+      background: rgba(108,99,255,0.12);
+      border: 1px solid rgba(108,99,255,0.25);
+      color: var(--accent);
+      font-size: 11px; font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+      margin-top: 6px;
+    }
+    .step-content .tool-tag.green {
+      background: rgba(0,212,170,0.1);
+      border-color: rgba(0,212,170,0.25);
+      color: var(--accent2);
+    }
+    .step-content .tool-tag.pink {
+      background: rgba(255,107,157,0.1);
+      border-color: rgba(255,107,157,0.25);
+      color: #ff6b9d;
+    }
+
+    /* Skill explainer */
+    .skill-explainer {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+    .skill-explainer-title {
+      font-size: 12px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 14px;
+    }
+    .skill-box {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      margin-bottom: 10px;
+    }
+    .skill-box:last-child { margin-bottom: 0; }
+    .skill-box-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 6px;
+    }
+    .skill-icon {
+      font-size: 18px; flex-shrink: 0;
+    }
+    .skill-name {
+      font-size: 14px; font-weight: 700; color: var(--text);
+    }
+    .skill-desc {
+      font-size: 13px; color: var(--text-muted); line-height: 1.55;
+    }
+    .skill-prompt {
+      background: rgba(108,99,255,0.07);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-family: monospace;
+      line-height: 1.6;
+    }
+    .skill-prompt strong { color: var(--accent2); font-family: inherit; }
+
+    /* Output cards */
+    .output-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .output-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+    .output-card-icon { font-size: 22px; margin-bottom: 8px; }
+    .output-card-title { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+    .output-card-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+    .output-card-format {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 11px; font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: rgba(0,212,170,0.1);
+      border: 1px solid rgba(0,212,170,0.2);
+      color: var(--accent2);
+    }
+
+    @media (max-width: 600px) {
+      .output-grid { grid-template-columns: 1fr; }
+      .monika-body { padding: 20px; }
+      .monika-header { padding: 20px; }
+    }
+
     /* ---- FOOTER ---- */
     footer {
       border-top: 1px solid var(--border);
@@ -767,6 +938,180 @@
           </ul>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- MONIKA SECTION -->
+  <div class="monika-section">
+    <div class="monika-header">
+      <div class="monika-avatar">&#128218;</div>
+      <div class="monika-header-text">
+        <h2>Monika, so geht's: Dein Buch wird zum Content-System</h2>
+        <p>Schritt-für-Schritt mit Manus Skills &mdash; kein Vorwissen nötig</p>
+      </div>
+    </div>
+    <div class="monika-body">
+
+      <p>Du hast ein Buch. Das ist dein grösster Vorteil. <strong>Alles, was du brauchst, steckt bereits darin.</strong> Die Frage ist nur, wie du es systematisch herausholst und in die richtigen Formate bringst. Genau dafür gibt es Manus Skills: kleine, wiederverwendbare Workflows, die du einmal definierst und dann immer wieder einsetzt.</p>
+
+      <p>Was ist ein Manus Skill? Ganz einfach: <strong>Ein Skill ist eine gespeicherte Anleitung für Manus</strong>, die beschreibt, wie eine bestimmte Aufgabe erledigt werden soll. Du definierst einmal deinen Stil, deine Zielgruppe und das gewünschte Format &mdash; und Manus wendet das auf jeden neuen Input an. Kein Copy-Paste, kein Neuerfinden. Einmal bauen, immer nutzen.</p>
+
+      <div class="checklist-title" style="margin-top:0">Dein 7-Schritte-Plan mit Manus</div>
+
+      <div class="step-list">
+
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h4>Buch in Manus laden</h4>
+            <p>Lade dein Manuskript oder dein fertiges Buch als PDF oder Word-Datei direkt in Manus hoch. Manus liest den gesamten Inhalt und kann daraus arbeiten. Alternativ: Kopiere einzelne Kapitel als Text in den Chat.</p>
+            <span class="tool-tag">&#128196; Manus Upload</span>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h4>10 Thesen definieren lassen</h4>
+            <p>Sage Manus: <em>"Lies mein Buch und extrahiere die 10 stärksten Kernthesen. Jede These soll als klare, eigenständige Aussage formuliert sein, maximal zwei Sätze."</em> Prüfe die Thesen, passe sie an &mdash; das ist dein Fundament für alles Weitere.</p>
+            <span class="tool-tag">&#129302; Manus Chat</span>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h4>Skill bauen: 10 kurze Texte</h4>
+            <p>Erstelle einen Skill, der aus jeder These einen kurzen, publizierbaren Text macht. Der Skill definiert deinen Schreibstil, die Länge (5 bis 8 Sätze) und die Struktur (These, Kontext, Implikation). Einmal gebaut, wendest du ihn auf alle 10 Thesen an.</p>
+            <div class="skill-explainer">
+              <div class="skill-explainer-title">&#128736; So baust du diesen Skill in Manus</div>
+              <div class="skill-box">
+                <div class="skill-box-header">
+                  <span class="skill-icon">&#9997;</span>
+                  <span class="skill-name">Skill: Kurztext aus These</span>
+                </div>
+                <div class="skill-desc">Gehe in Manus zu "Skills" &rarr; "Neuen Skill erstellen". Gib dem Skill einen Namen (z.B. "These zu Kurztext") und füge folgende Anweisung ein:</div>
+                <div class="skill-prompt"><strong>Systemanweisung:</strong> Du bist ein Ghostwriter für [dein Name]. Schreibe aus der folgenden These einen kurzen Text (5 bis 8 Sätze). Struktur: 1. Prägnante Eröffnung, 2. Kontext oder Einordnung, 3. Konkrete Implikation. Ton: souverän, klar, keine Buzzwords. Zielgruppe: [deine Zielgruppe]. Vermeide Füllwörter.</div>
+              </div>
+            </div>
+            <span class="tool-tag">&#128736; Manus Skill</span>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-content">
+            <h4>Skill bauen: Visuelle Aussagen für Instagram und LinkedIn</h4>
+            <p>Aus jedem Kurztext extrahierst du einen starken Einzelsatz &mdash; das ist deine visuelle Aussage. Zwei separate Skills sorgen für das richtige Format: Instagram als Bild (quadratisch, 1080x1080px) und LinkedIn als PDF-Karussell.</p>
+
+            <div class="output-grid">
+              <div class="output-card">
+                <div class="output-card-icon">&#128247;</div>
+                <div class="output-card-title">Instagram Bild</div>
+                <div class="output-card-desc">Quadratisches Bild (1080x1080px) mit deinem Zitat, deinem Namen und deinem Branding. Manus generiert das Bild direkt.</div>
+                <span class="output-card-format">PNG / JPG</span>
+              </div>
+              <div class="output-card">
+                <div class="output-card-icon">&#128196;</div>
+                <div class="output-card-title">LinkedIn PDF</div>
+                <div class="output-card-desc">10-seitiges PDF-Karussell: je eine These pro Seite, mit Kontext und Call-to-Action auf der letzten Seite.</div>
+                <span class="output-card-format">PDF Karussell</span>
+              </div>
+            </div>
+
+            <div class="skill-explainer">
+              <div class="skill-explainer-title">&#128736; So baust du die zwei Bild-Skills</div>
+              <div class="skill-box">
+                <div class="skill-box-header">
+                  <span class="skill-icon">&#128247;</span>
+                  <span class="skill-name">Skill: Instagram Zitat-Bild</span>
+                </div>
+                <div class="skill-desc">Erstelle einen Skill mit dem Namen "Instagram Zitat". Anweisung:</div>
+                <div class="skill-prompt"><strong>Systemanweisung:</strong> Nimm den folgenden Satz und erstelle ein quadratisches Instagram-Bild (1080x1080px). Design: dunkler Hintergrund, grosser weisser Zitattext, kleiner Name unten rechts, minimalistisch. Kein Schnickschnack. Der Satz soll sofort lesbar sein.</div>
+              </div>
+              <div class="skill-box" style="margin-top:10px">
+                <div class="skill-box-header">
+                  <span class="skill-icon">&#128196;</span>
+                  <span class="skill-name">Skill: LinkedIn PDF-Karussell</span>
+                </div>
+                <div class="skill-desc">Erstelle einen Skill mit dem Namen "LinkedIn Karussell". Anweisung:</div>
+                <div class="skill-prompt"><strong>Systemanweisung:</strong> Nimm die folgenden 10 Thesen und erstelle ein PDF-Karussell für LinkedIn. Jede Seite: eine These als Headline, 2 bis 3 Sätze Kontext, sauberes Layout. Letzte Seite: Call-to-Action mit Name und Kontakt. Format: A4 quer oder quadratisch, exportierbar als PDF.</div>
+              </div>
+            </div>
+            <span class="tool-tag">&#128736; Manus Skill</span>
+            <span class="tool-tag pink" style="margin-left:6px">&#128247; Instagram</span>
+            <span class="tool-tag green" style="margin-left:6px">&#128196; LinkedIn</span>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-content">
+            <h4>Landingpage bauen mit Lovable</h4>
+            <p>Gehe auf <a href="https://lovable.dev" target="_blank" style="color:var(--accent)">lovable.dev</a> und beschreibe deine Seite in einem Satz: <em>"Ich brauche eine einfache Landingpage für mein Buch [Titel]. Eine Headline, ein kurzer Text, ein E-Mail-Formular, kein Menü."</em> Lovable generiert die Seite in Minuten. Kein Code nötig.</p>
+            <div class="skill-explainer">
+              <div class="skill-explainer-title">&#128161; Was auf die Landingpage gehört</div>
+              <div class="skill-box">
+                <div class="skill-desc" style="line-height:1.8">
+                  &#9679; <strong>Headline:</strong> Deine stärkste These (1 Satz)<br/>
+                  &#9679; <strong>Subline:</strong> Wer du bist und für wen das relevant ist (2 Sätze)<br/>
+                  &#9679; <strong>E-Mail-Formular:</strong> "Erhalte die 10 Thesen als PDF" (ein Feld, ein Button)<br/>
+                  &#9679; <strong>Kein Menü, keine Links, keine Ablenkung</strong>
+                </div>
+              </div>
+            </div>
+            <span class="tool-tag green">&#127760; Lovable.dev</span>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">6</div>
+          <div class="step-content">
+            <h4>E-Mails sammeln mit deinem Newsletter-Tool</h4>
+            <p>Verbinde das Formular deiner Lovable-Landingpage mit deinem bestehenden E-Mail-Tool (Mailchimp, Brevo, ConvertKit oder ähnliches). Die meisten Tools bieten ein einfaches Einbettungs-Formular oder einen Webhook. Erstelle eine kurze Willkommens-Mail, die automatisch versendet wird.</p>
+            <div class="skill-explainer">
+              <div class="skill-explainer-title">&#128139; Minimale E-Mail-Serie (3 Mails)</div>
+              <div class="skill-box">
+                <div class="skill-desc" style="line-height:1.8">
+                  &#9679; <strong>Mail 1 (sofort):</strong> Willkommen + die 10 Thesen als PDF<br/>
+                  &#9679; <strong>Mail 2 (Tag 3):</strong> Eine These vertiefen + persönliche Geschichte<br/>
+                  &#9679; <strong>Mail 3 (Tag 7):</strong> Einladung zum Gespräch oder Link zum Buch
+                </div>
+              </div>
+            </div>
+            <span class="tool-tag green">&#128140; Newsletter-Tool</span>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num">7</div>
+          <div class="step-content">
+            <h4>Feedback auswerten &mdash; dann erst automatisieren</h4>
+            <p>Warte mindestens zwei Wochen. Schau, welche Thesen die meisten Reaktionen bekommen. Welche E-Mail wird am häufigsten geöffnet? Welches Instagram-Bild bekommt die meisten Saves? <strong>Erst wenn du weisst, was wirkt, automatisierst du.</strong> Alles andere ist Komplexität ohne Wirkung.</p>
+            <span class="tool-tag">&#128200; Analyse zuerst</span>
+            <span class="tool-tag green" style="margin-left:6px">&#129302; Dann Automatisierung</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="checklist-title">Monika's Checkliste: Buch zu Content-System</div>
+      <ul class="checklist" id="checklist-monika">
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Buch als PDF oder Word in Manus hochgeladen</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 Thesen von Manus extrahiert und geprüft</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Skill "These zu Kurztext" in Manus erstellt</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 kurze Texte mit dem Skill generiert und angepasst</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Skill "Instagram Zitat-Bild" in Manus erstellt</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 Instagram-Bilder generiert</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Skill "LinkedIn PDF-Karussell" in Manus erstellt</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>LinkedIn-PDF mit allen 10 Thesen exportiert</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Landingpage auf Lovable.dev erstellt</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>E-Mail-Formular mit Newsletter-Tool verbunden</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>3-Mail-Serie aufgesetzt und getestet</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>2 Wochen Feedback gesammelt und ausgewertet</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Erst jetzt: Automatisierung planen</li>
+      </ul>
+
     </div>
   </div>
 
