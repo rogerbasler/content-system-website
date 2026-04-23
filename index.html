@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content System | Roger Basler de Roca</title>
+  <meta name="description" content="Wie du dein Content-Chaos in ein funktionierendes System verwandelst. Mit Checklisten, Recherche und Podcast von Roger Basler de Roca." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --bg2: #111118;
+      --bg3: #18181f;
+      --border: #2a2a38;
+      --accent: #6c63ff;
+      --accent2: #00d4aa;
+      --accent3: #ff6b6b;
+      --text: #e8e8f0;
+      --text-muted: #8888aa;
+      --text-dim: #555570;
+      --check-done: #00d4aa;
+      --check-open: #3a3a50;
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* ---- HERO ---- */
+    .hero {
+      background: linear-gradient(135deg, #0a0a0f 0%, #13131f 50%, #0d0d1a 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(108,99,255,0.15);
+      border: 1px solid rgba(108,99,255,0.3);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 760px;
+      margin: 0 auto 20px;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      font-size: clamp(15px, 2vw, 18px);
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    .hero-meta span { display: flex; align-items: center; gap: 6px; }
+
+    /* ---- PODCAST PLAYER ---- */
+    .podcast-section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 0;
+    }
+    .podcast-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .podcast-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .podcast-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .podcast-icon {
+      width: 56px; height: 56px;
+      background: linear-gradient(135deg, var(--accent), #9b8fff);
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 24px;
+    }
+    .podcast-info h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .podcast-info p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .podcast-badge {
+      margin-left: auto;
+      background: rgba(0,212,170,0.12);
+      border: 1px solid rgba(0,212,170,0.25);
+      color: var(--accent2);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+    audio {
+      width: 100%;
+      margin-top: 4px;
+      accent-color: var(--accent);
+      border-radius: 8px;
+    }
+    audio::-webkit-media-controls-panel {
+      background: var(--bg3);
+    }
+
+    /* ---- TLDR BOX ---- */
+    .tldr-section {
+      max-width: 760px;
+      margin: 40px auto 0;
+      padding: 0 24px;
+    }
+    .tldr-box {
+      background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(0,212,170,0.06));
+      border: 1px solid rgba(108,99,255,0.25);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+    }
+    .tldr-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .tldr-box p {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ---- MAIN CONTENT ---- */
+    .main-content {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ---- SECTION CARDS ---- */
+    .section-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .section-card:hover { border-color: rgba(108,99,255,0.4); }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 28px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .section-number {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--accent), #9b8fff);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      flex-shrink: 0;
+      color: #fff;
+    }
+    .section-title-wrap { flex: 1; }
+    .section-title-wrap h2 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .section-title-wrap p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .section-chevron {
+      color: var(--text-dim);
+      font-size: 18px;
+      transition: transform 0.25s;
+    }
+    .section-card.open .section-chevron { transform: rotate(180deg); }
+
+    .section-body {
+      display: none;
+      padding: 0 28px 28px;
+      border-top: 1px solid var(--border);
+    }
+    .section-card.open .section-body { display: block; }
+
+    .section-body p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin: 20px 0 16px;
+      line-height: 1.75;
+    }
+    .section-body p strong { color: var(--text); }
+
+    /* ---- STAT CALLOUT ---- */
+    .stat-callout {
+      background: var(--bg3);
+      border-left: 3px solid var(--accent2);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .stat-callout strong { color: var(--accent2); font-size: 18px; display: block; margin-bottom: 4px; }
+
+    /* ---- CHECKLIST ---- */
+    .checklist-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 24px 0 12px;
+    }
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li:hover { color: var(--text); }
+    .checklist li.checked { color: var(--text-dim); text-decoration: line-through; }
+
+    .check-box {
+      width: 20px; height: 20px;
+      border: 2px solid var(--check-open);
+      border-radius: 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+      background: transparent;
+    }
+    .checklist li.checked .check-box {
+      background: var(--check-done);
+      border-color: var(--check-done);
+    }
+    .check-box svg { display: none; }
+    .checklist li.checked .check-box svg { display: block; }
+
+    /* Sub-checklist */
+    .checklist .sub-list {
+      margin-top: 8px;
+      padding-left: 32px;
+    }
+    .checklist .sub-list li {
+      font-size: 13px;
+      padding: 6px 0;
+      border-bottom: none;
+    }
+
+    /* ---- PROGRESS BAR ---- */
+    .progress-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .progress-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .progress-label { font-size: 14px; font-weight: 600; }
+    .progress-count { font-size: 13px; color: var(--text-muted); }
+    .progress-bar-wrap {
+      background: var(--bg3);
+      border-radius: 100px;
+      height: 8px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      border-radius: 100px;
+      transition: width 0.4s ease;
+      width: 0%;
+    }
+
+    /* ---- SEQUENCE SECTION ---- */
+    .sequence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .seq-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      text-align: center;
+    }
+    .seq-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .seq-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ---- WEEK PLAN ---- */
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .week-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+    }
+    .week-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 6px;
+    }
+    .week-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .week-items {
+      list-style: none;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+    .week-items li { padding: 3px 0; }
+    .week-items li::before { content: "→ "; color: var(--accent); }
+
+    /* ---- SOURCES ---- */
+    .sources-section {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      margin-top: 40px;
+    }
+    .sources-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+    .source-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 13px;
+    }
+    .source-item:last-child { border-bottom: none; }
+    .source-num {
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+      min-width: 24px;
+    }
+    .source-text { color: var(--text-muted); line-height: 1.5; }
+    .source-text a { color: var(--accent); text-decoration: none; }
+    .source-text a:hover { text-decoration: underline; }
+
+    /* ---- FOOTER ---- */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 600px) {
+      .hero { padding: 60px 20px 48px; }
+      .section-header { padding: 20px; }
+      .section-body { padding: 0 20px 20px; }
+      .podcast-card { padding: 20px; }
+      .podcast-header { flex-wrap: wrap; }
+      .podcast-badge { margin-left: 0; }
+      .week-grid, .sequence-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag">Content System 2026</div>
+  <h1>Du hast kein Toolproblem.<br/>Du hast ein <span>Strukturproblem.</span></h1>
+  <p class="hero-sub">Wie du Content-Chaos in ein funktionierendes System verwandelst. Mit Checklisten, Daten aus 2026 und einem Podcast von Roger Basler de Roca.</p>
+  <div class="hero-meta">
+    <span>&#128214; Basierend auf deutschen Quellen 2026</span>
+    <span>&#9989; Interaktive Checklisten</span>
+    <span>&#127911; Podcast inklusive</span>
+  </div>
+</section>
+
+<!-- PODCAST PLAYER -->
+<section class="podcast-section">
+  <div class="podcast-card">
+    <div class="podcast-header">
+      <div class="podcast-icon">&#127911;</div>
+      <div class="podcast-info">
+        <h3>Podcast: Vom Content-Chaos zum System</h3>
+        <p>Roger Basler de Roca &mdash; 4 Min. &mdash; Deutsch</p>
+      </div>
+      <span class="podcast-badge">&#9654; Jetzt hören</span>
+    </div>
+    <audio controls preload="metadata">
+      <source src="podcast_audio.mp3" type="audio/mpeg" />
+      Dein Browser unterstützt kein Audio-Element.
+    </audio>
+  </div>
+</section>
+
+<!-- TLDR -->
+<section class="tldr-section">
+  <div class="tldr-box">
+    <div class="tldr-label">TL;DR</div>
+    <p>Du hast kein Toolproblem, sondern ein Strukturproblem. Wenn du Content, Verwertung, Distribution und Infrastruktur sauber trennst, entsteht ein System, das für dich arbeitet. Der Einstieg ist simpel: ein Kerninhalt, klare Ableitungen, eine Landingpage, dann erst Automatisierung.</p>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="main-content">
+
+  <!-- PROGRESS -->
+  <div class="progress-section">
+    <div class="progress-header">
+      <span class="progress-label">Dein Fortschritt</span>
+      <span class="progress-count" id="progress-text">0 von 32 erledigt</span>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-bar"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 1 -->
+  <div class="section-card open" data-section="1">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-number">1</div>
+      <div class="section-title-wrap">
+        <h2>Die Content Engine</h2>
+        <p>Wo alles beginnt &mdash; dein intellektuelles Kapital</p>
+      </div>
+      <span class="section-chevron">&#8964;</span>
+    </div>
+    <div class="section-body">
+      <p>Am Anfang steht nicht der Podcast. Nicht die Website. Nicht die Automatisierung. Sondern ein klarer Gedanke. Dein Buch ist nicht einfach ein Projekt &mdash; es ist deine Content-Quelle, dein Rohmaterial, dein intellektuelles Kapital.</p>
+      <p>Was oft unterschätzt wird: Ein gutes Buch enthält bereits alles, was du später brauchst. Die Konsequenz daraus ist klar: Du entwickelst nicht zehn Formate. Du entwickelst ein starkes Fundament.</p>
+      <div class="stat-callout">
+        <strong>75 %</strong>
+        aller Creator nutzen 2026 KI für die Content-Erstellung. 68 % planen den weiteren Ausbau. Der Unterschied liegt nicht im Tool, sondern in der Qualität des Ausgangsmaterials.
+        <span style="font-size:11px;margin-top:6px;display:block;color:var(--text-dim)">[2] Circle Creator Economy Statistics 2026</span>
+      </div>
+      <div class="checklist-title">Checkliste: Content Engine aufbauen</div>
+      <ul class="checklist" id="checklist-1">
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Buch oder Manuskript als Ausgangsbasis definieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 zentrale Thesen extrahieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 prägnante Aussagen formulieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>10 Beispiele oder Geschichten identifizieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Rohmaterial dokumentieren (noch nichts publizieren)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 2 -->
+  <div class="section-card" data-section="2">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-number">2</div>
+      <div class="section-title-wrap">
+        <h2>Transformation</h2>
+        <p>Aus einem Gedanken werden zehn Formate</p>
+      </div>
+      <span class="section-chevron">&#8964;</span>
+    </div>
+    <div class="section-body">
+      <p>Die meisten produzieren Content linear. Du arbeitest künftig modular. Eine These aus deinem Buch wird zu einem LinkedIn-Post, einem Blogabschnitt, einem Podcast-Segment, einem visuellen Zitat und einem Video-Skript.</p>
+      <p>Der entscheidende Unterschied liegt in der Perspektive: <strong>Du produzierst nicht mehr Content. Du transformierst ihn.</strong> Ein sauber gesetztes Zitat, visuell reduziert, kann mehr auslösen als ein langer Text. Klarheit schlägt Kreativität.</p>
+      <div class="stat-callout">
+        <strong>71 Mio.</strong>
+        Menschen in Deutschland nutzen 2026 soziale Netzwerke &mdash; 85,1 % der Bevölkerung. Video und Interaktion dominieren. Wer Content nur einmal produziert, verschenkt systematisch Reichweite.
+        <span style="font-size:11px;margin-top:6px;display:block;color:var(--text-dim)">[3] EMBIS Akademie, Social Media Zahlen 2026</span>
+      </div>
+      <div class="checklist-title">Checkliste: Content transformieren</div>
+      <ul class="checklist" id="checklist-2">
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Für jede These einen kurzen Text schreiben (5 bis 8 Sätze)</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Aus jedem Text einen starken Einzelsatz extrahieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Visuelle Karte gestalten (Canva oder Figma)</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Podcast-Segment-Skript ableiten</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>LinkedIn-Post formulieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Video-Skript (60 Sekunden) vorbereiten</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 3 -->
+  <div class="section-card" data-section="3">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-number">3</div>
+      <div class="section-title-wrap">
+        <h2>Distribution</h2>
+        <p>Ohne Ziel ist alles nur Lärm</p>
+      </div>
+      <span class="section-chevron">&#8964;</span>
+    </div>
+    <div class="section-body">
+      <p>Hier passiert der häufigste Denkfehler. Viele bauen Websites. Wenige bauen Konversion. Die Frage ist nicht: Wie sieht meine Website aus? Sondern: <strong>Was soll passieren, wenn jemand darauf landet?</strong></p>
+      <p>Die Antwort sollte brutal einfach sein. Eine Seite. Ein Ziel. E-Mail hinterlassen, Termin buchen oder Whitepaper downloaden. Alles andere ist Ablenkung.</p>
+      <div class="stat-callout">
+        <strong>60 %</strong>
+        aller Google-Suchen enden 2026 ohne einen einzigen Klick auf ein externes Ergebnis. Wer Reichweite aufbauen will, braucht direkte Zielgruppen-Bindung &mdash; nicht nur SEO-Traffic.
+        <span style="font-size:11px;margin-top:6px;display:block;color:var(--text-dim)">[4] Rand Fishkin / SparkToro, 2024, zitiert in W4 Agency Marketing Trends 2026</span>
+      </div>
+      <div class="checklist-title">Checkliste: Distribution aufbauen</div>
+      <ul class="checklist" id="checklist-3">
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Einfache Landingpage erstellen (Framer oder Webflow)</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Klare Headline (zentrale These) formulieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Einen einzigen Call-to-Action definieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Kein Menü, keine Ablenkungen</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>E-Mail-Tool verbinden (ConvertKit oder Brevo)</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>E-Mail-Serie aufbauen: Kontext &rarr; Einsicht &rarr; Perspektive &rarr; Angebot</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 4 -->
+  <div class="section-card" data-section="4">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-number">4</div>
+      <div class="section-title-wrap">
+        <h2>Infrastruktur</h2>
+        <p>Dein unterschätzter Engpass &mdash; die PARA-Logik</p>
+      </div>
+      <span class="section-chevron">&#8964;</span>
+    </div>
+    <div class="section-body">
+      <p>Dein eigentliches Problem liegt nicht bei Content oder Tools, sondern bei deiner internen Ordnung. <strong>Wenn dein Wissen nicht auffindbar ist, existiert es praktisch nicht.</strong> Viele sammeln. Wenige strukturieren.</p>
+      <p>Die Lösung ist unspektakulär, aber brutal effektiv: die PARA-Logik. Projekte, Bereiche, Wissen, Archiv. Jede Datei bekommt drei Dinge: Kontext, Zweck und den nächsten Schritt. Wenn einer dieser Punkte fehlt, wird die Datei zur digitalen Leiche.</p>
+      <div class="stat-callout">
+        <strong>20 %</strong>
+        der Arbeitszeit verbringen Wissensarbeiter damit, Informationen zu suchen. Für Solo-Creator ist dieser Anteil oft noch höher &mdash; weil keine IT-Abteilung die Struktur vorgibt.
+        <span style="font-size:11px;margin-top:6px;display:block;color:var(--text-dim)">[5] Powell Software, Wissensmanagement-Tools 2026, April 2026</span>
+      </div>
+      <div class="checklist-title">Checkliste: PARA-Infrastruktur aufbauen</div>
+      <ul class="checklist" id="checklist-4">
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>01_Projekte Ordner anlegen</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>02_Content Ordner anlegen</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>03_Wissen Ordner anlegen</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>04_Archiv Ordner anlegen</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Jede Datei mit Kontext, Zweck und nächstem Schritt versehen</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Wöchentlichen 15-Minuten-Review einplanen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 5 -->
+  <div class="section-card" data-section="5">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-number">5</div>
+      <div class="section-title-wrap">
+        <h2>KI richtig nutzen</h2>
+        <p>Nicht Tool, sondern Haltung</p>
+      </div>
+      <span class="section-chevron">&#8964;</span>
+    </div>
+    <div class="section-body">
+      <p>KI ohne Profil ist wie ein Mitarbeiter ohne Briefing. Unberechenbar. Die Frage hat sich 2026 verschoben: nicht mehr "Nutzen wir KI?" sondern <strong>"Wer steuert, was KI tut, und woran messen wir das?"</strong></p>
+      <p>Vage Anweisungen produzieren vage Ergebnisse. Statt "Mach das besser" lieber: "Strukturiere diesen Text in klare Argumente, reduziere Redundanzen und schärfe die Kernthese."</p>
+      <div class="checklist-title">Checkliste: KI-Profil definieren</div>
+      <ul class="checklist" id="checklist-5">
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Tonalität schriftlich festhalten</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Denkweise und Haltung beschreiben</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Zielgruppe präzise definieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Explizite Ausschlüsse formulieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Festen System-Prompt speichern</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Prompt-Bibliothek mit mindestens 5 Basis-Prompts anlegen</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 6 -->
+  <div class="section-card" data-section="6">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-number">6</div>
+      <div class="section-title-wrap">
+        <h2>Medienformate</h2>
+        <p>Hörbuch, Podcast, Video &mdash; was wann sinnvoll ist</p>
+      </div>
+      <span class="section-chevron">&#8964;</span>
+    </div>
+    <div class="section-body">
+      <p>Ja, alles ist möglich. Aber nicht alles ist sinnvoll gleichzeitig. Ein Podcast ist nur sinnvoll, wenn du eine wiederkehrende Perspektive hast. Sonst ist es Selbstgespräch mit Mikrofon.</p>
+      <div class="stat-callout">
+        <strong>63 %</strong>
+        der 18- bis 49-Jährigen hören 2026 Podcasts &mdash; erstmals mehr als klassisches Radio. Für Experten mit klarer Perspektive ist das ein klares Signal: Das Publikum ist da.
+        <span style="font-size:11px;margin-top:6px;display:block;color:var(--text-dim)">[6] Seven.One Audio Podcast-Studie 2025, zitiert in wepodit Podcast Trends 2026</span>
+      </div>
+      <div class="checklist-title">Checkliste: Medienformat wählen</div>
+      <ul class="checklist" id="checklist-6">
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Primärformat festlegen (eines, nicht alle)</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Wiederkehrende Perspektive definieren</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Produktionsaufwand realistisch einschätzen</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Erst nach 10 Episoden das Format evaluieren</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 7: SEQUENCE -->
+  <div class="section-card" data-section="7">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-number">7</div>
+      <div class="section-title-wrap">
+        <h2>Die richtige Reihenfolge</h2>
+        <p>Der entscheidende Unterschied liegt hier</p>
+      </div>
+      <span class="section-chevron">&#8964;</span>
+    </div>
+    <div class="section-body">
+      <p>Das wird fast immer falsch gemacht. Man startet mit Tools, mit Automatisierung, mit Plattformen. <strong>Wenn du das drehst, baust du Komplexität ohne Wirkung.</strong></p>
+      <div class="sequence-grid">
+        <div class="seq-item"><div class="seq-num">01</div><div class="seq-label">Klarheit über deinen Kerninhalt</div></div>
+        <div class="seq-item"><div class="seq-num">02</div><div class="seq-label">Strukturierte Wiederverwertung</div></div>
+        <div class="seq-item"><div class="seq-num">03</div><div class="seq-label">Gezielte Distribution</div></div>
+        <div class="seq-item"><div class="seq-num">04</div><div class="seq-label">Erst dann Automatisierung</div></div>
+      </div>
+      <div class="checklist-title">Checkliste: Reihenfolge prüfen</div>
+      <ul class="checklist" id="checklist-7">
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Kerninhalt klar definiert? (Schritt 1 abgeschlossen)</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Wiederverwertungssystem steht? (Schritt 2 abgeschlossen)</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Distribution aktiv? (Schritt 3 abgeschlossen)</li>
+        <li onclick="toggleCheck(this)"><span class="check-box"><svg width="12" height="10" viewBox="0 0 12 10" fill="none"><path d="M1 5L4.5 8.5L11 1" stroke="#0a0a0f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Erst jetzt: Automatisierung einrichten</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SECTION 8: WEEK PLAN -->
+  <div class="section-card" data-section="8">
+    <div class="section-header" onclick="toggleSection(this)">
+      <div class="section-number">8</div>
+      <div class="section-title-wrap">
+        <h2>Dein pragmatischer Einstieg</h2>
+        <p>4-Wochen-Plan: Vom Chaos zum System</p>
+      </div>
+      <span class="section-chevron">&#8964;</span>
+    </div>
+    <div class="section-body">
+      <p>Wenn du heute starten willst, dann so. Vier Wochen. Klare Schritte. Kein Perfektionismus.</p>
+      <div class="week-grid">
+        <div class="week-card">
+          <div class="week-label">Woche 1</div>
+          <div class="week-title">Fundament</div>
+          <ul class="week-items">
+            <li>Kerninhalt definieren</li>
+            <li>10 Thesen ableiten</li>
+            <li>PARA-Struktur anlegen</li>
+            <li>KI-Profil schreiben</li>
+          </ul>
+        </div>
+        <div class="week-card">
+          <div class="week-label">Woche 2</div>
+          <div class="week-title">Transformation</div>
+          <ul class="week-items">
+            <li>10 Texte schreiben</li>
+            <li>10 visuelle Aussagen</li>
+            <li>Podcast-Konzept</li>
+          </ul>
+        </div>
+        <div class="week-card">
+          <div class="week-label">Woche 3</div>
+          <div class="week-title">Distribution</div>
+          <ul class="week-items">
+            <li>Landingpage bauen</li>
+            <li>E-Mail-Serie aufsetzen</li>
+            <li>Ersten Content publizieren</li>
+          </ul>
+        </div>
+        <div class="week-card">
+          <div class="week-label">Woche 4</div>
+          <div class="week-title">Lernen</div>
+          <ul class="week-items">
+            <li>Feedback auswerten</li>
+            <li>System anpassen</li>
+            <li>Automatisierung planen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-section">
+    <div class="sources-title">Quellen &mdash; Deutsche Studien 2026</div>
+    <div class="source-item">
+      <span class="source-num">[1]</span>
+      <span class="source-text">W4 Agency / Marketingblatt: <em>Digital Marketing Trends 2026: A Strategic Guide for the DACH Region</em>, April 2026. <a href="https://blog.marketingblatt.com/en/digital-marketing-trends-2026/" target="_blank">blog.marketingblatt.com</a></span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">[2]</span>
+      <span class="source-text">Circle Creator Economy Statistics 2026: 75 % der Creator nutzen KI für Content-Erstellung, 68 % planen Ausbau. Zitiert in Memberspot Blog, März 2026.</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">[3]</span>
+      <span class="source-text">Melanie Tamblé / EMBIS Akademie: <em>Social Media Zahlen 2026: Nutzung, Reichweite, Wachstum &amp; Trends</em>, April 2026. <a href="https://www.embis.de/campus/social-media-zahlen/" target="_blank">embis.de</a></span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">[4]</span>
+      <span class="source-text">Rand Fishkin / SparkToro: Zero-Click Searches, 2024. Zitiert in: W4 Agency Marketing Trends 2026 DACH.</span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">[5]</span>
+      <span class="source-text">Lydia Schierig / Powell Software: <em>Wissensmanagement-Tools 2026: Die 10 besten Lösungen</em>, April 2026. <a href="https://powell-software.com/de/resources/blog/wissensmanagement-tools/" target="_blank">powell-software.com</a></span>
+    </div>
+    <div class="source-item">
+      <span class="source-num">[6]</span>
+      <span class="source-text">Seven.One Audio Podcast-Studie 2025. Zitiert in: Nora Mayr / wepodit: <em>Podcast Trends 2026</em>, Dez. 2025. <a href="https://wepodit.com/blog/podcast-wissen/podcast-trends-2026-die-wichtigsten-entwicklungen-formate-wachstumsstrategien/" target="_blank">wepodit.com</a></span>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Von <strong>Roger Basler de Roca</strong> &mdash; Digital-Unternehmer, Buchautor, Top-100-Speaker &mdash; <a href="https://rogerbasler.ch" target="_blank">rogerbasler.ch</a></p>
+</footer>
+
+<script>
+  // Toggle sections
+  function toggleSection(header) {
+    const card = header.closest('.section-card');
+    card.classList.toggle('open');
+  }
+
+  // Toggle checklist items
+  function toggleCheck(li) {
+    li.classList.toggle('checked');
+    updateProgress();
+    saveState();
+  }
+
+  // Progress bar
+  function updateProgress() {
+    const all = document.querySelectorAll('.checklist li');
+    const done = document.querySelectorAll('.checklist li.checked');
+    const total = all.length;
+    const count = done.length;
+    const pct = total > 0 ? Math.round((count / total) * 100) : 0;
+    document.getElementById('progress-bar').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = count + ' von ' + total + ' erledigt';
+  }
+
+  // Persist state in localStorage
+  function saveState() {
+    const items = document.querySelectorAll('.checklist li');
+    const state = Array.from(items).map(li => li.classList.contains('checked'));
+    localStorage.setItem('checklist-state', JSON.stringify(state));
+  }
+
+  function loadState() {
+    const raw = localStorage.getItem('checklist-state');
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    const items = document.querySelectorAll('.checklist li');
+    items.forEach((li, i) => {
+      if (state[i]) li.classList.add('checked');
+    });
+    updateProgress();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadState();
+    updateProgress();
+  });
+</script>
+
+</body>
+</html>
